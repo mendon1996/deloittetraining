@@ -1,0 +1,71 @@
+Create a table called Employee with the following Columns  and perform the following operations:-
+------------------------------------------------------------------------------------------------------------
+
+EmployeeID    
+EmployeeName   
+EmployeeAddress : 
+DOB
+DOJ
+Salary
+
+
+a.) Insert five records
+
+b) Retrieve all the records
+
+
+c) Retrieve the Employee name whose salary is greater than 20000
+
+d) Retrieve the Employee name whose address contains 'a' or 'p' or 'r'  as the last character
+ 
+e) Increase the Salary of all the Employee by 20%
+
+f) Delete all the employee records whose salary is less than 5000
+
+create table Employee
+(
+	EmployeeID varchar(10) constraint myEmployeeID primary key,
+	EmployeeName varchar(20) constraint myEmployeeName not null,
+	EmployeeAddress varchar(50) constraint myEmployeeAddress not null,
+	DOB date constraint myDOB not null ,
+	DOJ date constraint myDOJ not null,
+	Salary number check(salary >= 0)
+);
+
+a)
+
+insert into Employee values('1','Scott','Buda','03-jun-1996','03-aug-2015','25000');
+
+
+insert into Employee values('2','Raj','Pest','02-mar-1996','02-jan-2015','30000');
+
+
+insert into Employee values('3','Yash','Udupi','01-jun-1996','02-aug-2015','4000');
+
+
+insert into Employee values('4','Lamar','Buda','10-jun-1996','30-aug-2015','1000');
+
+
+insert into Employee values('5','Scott','Buda','03-jun-1996','03-aug-2015','4500');
+
+b)
+
+select * from employee;
+ 
+c)
+
+select EmployeeName from Employee where salary > 20000;
+
+d)
+
+select EmployeeName from Employee where EmployeeAddress like '%a' or EmployeeAddress like '%p' or EmployeeAddress like '%r'; 
+
+e)
+
+update Employee set salary = salary*1.2;
+ 
+f)
+
+delete from employee where salary < 5000;
+
+

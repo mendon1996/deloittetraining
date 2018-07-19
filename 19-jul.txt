@@ -1,0 +1,368 @@
+package inheritance;
+class Animal{
+	
+	public Animal() {
+		System.out.println("Animals Calls");
+	}
+	
+	public void eat() {
+		System.out.println("Animals eats food");
+	}
+}
+
+class Men extends Animal{
+	
+	public Men() {
+		System.out.println("Men calls");
+	}
+	
+	public void eat() {
+		System.out.println("Men eats vegetarian and non-vegetarian food");
+		super.eat();
+		}
+}
+
+class Dog extends Animal{
+	
+	public Dog() {
+		System.out.println("Dog calls");
+	}
+	
+	public void eat() {
+		System.out.println("Dog eats food");
+	}
+	
+	public void drink() {
+		System.out.println("Dog drinks because life sucks balls");
+	}
+}
+
+public class Main{ // it was showing an error because this was the only public class and thus the name of this class should be the same as the java file
+	
+	public static void main(String[] args) {
+		
+		Animal a = new Men();
+		a.eat();
+		
+		a = new Dog(); //Note that here a is not an object but the reference to the object created in line 44.
+		a.eat();
+	}
+}
+
+abstract class
+
+package inheritance;
+
+abstract class Vehicles {
+	
+	int price;
+	public Vehicles() {
+		System.out.println("Vehicle constructor called");
+	}
+	
+	public abstract void start();
+	public abstract void stop();
+	
+	public void music() {
+		System.out.println("Music ");
+	}
+}
+
+class Car extends Vehicles{
+	
+	public void start() {
+		
+		price = 900000;
+		System.out.println("Car started ");
+		
+	}
+	
+	public void stop() {
+		
+		System.out.println("Car stopped.");
+		
+	}
+}
+
+public class Class_vehicles{
+	
+	public static void main(String[] args) {
+		
+		Vehicles vehicle = new Car();
+		vehicle.music();
+		vehicle.start();
+	}
+}
+
+getters ans setters
+
+package deloitte;
+
+public class Customer {
+
+	private int custID;
+	private String custName;
+	private int billAmt;
+	
+	public Customer() {
+		custID = 1000;
+		custName = "NA";
+		billAmt = 100;
+	}
+	
+	
+	
+	
+	
+	
+	
+	public int getCustID() {
+		return custID;
+	}
+
+
+
+
+
+
+
+	/*public void setCustID(int custID) {
+		this.custID = custID;
+	}*/
+
+
+
+
+
+
+
+	public String getCustName() {
+		return custName;
+	}
+
+
+
+
+
+
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+
+
+
+
+
+
+	public int getBillAmt() {
+		return billAmt;
+	}
+
+
+
+
+
+
+
+	public void setBillAmt(int billAmt) {
+		this.billAmt = billAmt;
+	}
+
+
+
+
+
+
+
+	public Customer(String custName, int billAmt) {
+		//super();
+		this();
+		this.custName = custName;
+		this.billAmt = billAmt;
+	}
+
+
+
+	public Customer(int custID, int billAmt) {
+		super();
+		this.custID = custID;
+		this.billAmt = billAmt;
+	}
+
+
+
+	public Customer(int custID, String custName, int billAmt) {
+		super();
+		this.custID = custID;
+		this.custName = custName;
+		this.billAmt = billAmt;
+	}
+
+
+
+	public void display() {
+		System.out.println("Customer ID : " +custID);
+		System.out.println("Customer name : "+custName);
+		System.out.println("Bill amount : "+ billAmt);
+	}
+	
+	public static void main(String[] args) {
+		Customer customer = new Customer("Raj",100);
+		customer.display();
+		
+	}
+}
+
+package deloitte;
+
+public class Client {
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		Customer customer = new Customer();
+		customer.display();
+		
+	    int a = customer.getCustID();
+	    System.out.println("a is printed as " +a) ;
+	    
+	    customer. setCustName("Ami");
+	    
+	    String s = customer.getCustName();
+	    System.out.println("The changed name is " + s);
+	    
+	    
+	    
+		
+		int result = input();
+		System.out.println(result);
+	}
+
+	public static int input() {
+		int a=0, b=0;
+		int result = a+b;
+		return result;
+	}
+}
+
+.equals and hashcode
+
+1) this program has the backbone of the execution
+
+package inheritance;
+
+public class PassengerDetails {
+	
+	public int pnr;
+	public String Passenger;
+	public int fare;
+	
+	public PassengerDetails(int pnr,String Passenger,int fare) {
+		super();
+		this.pnr = pnr;
+		this.Passenger=Passenger;
+		this.fare=fare;
+	}
+		
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((Passenger == null) ? 0 : Passenger.hashCode());
+			result = prime * result + fare;
+			result = prime * result + pnr;
+			return result;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			
+			if (obj == null)
+				return false;
+			
+			if (getClass() != obj.getClass())
+				return false;
+			
+			PassengerDetails other = (PassengerDetails) obj;
+			if (Passenger == null) {
+				
+				if (other.Passenger != null)
+					return false;
+			} 
+			else if (!Passenger.equals(other.Passenger))
+				return false;
+			
+			if (fare != other.fare)
+				return false;
+			
+			if (pnr != other.pnr)
+				
+				return false;
+			
+			return true;
+		}
+		
+		
+	
+}
+
+2) this part executes
+
+package inheritance;
+
+public class PassengerMain {
+	
+	public int pnr;
+	public String Passenger;
+	public int fare;
+	
+	public static void main(String[] args) {
+			PassengerDetails passenger1 = new PassengerDetails(1927,"Yamini", 25);
+			PassengerDetails passenger2 = new PassengerDetails(1927,"Yamini", 25);
+			//PassengerDetails passenger3 = passenger1;
+			
+			System.out.println(passenger1.equals(passenger2));
+			
+			
+		}
+}
+
+Exercise Objective(s): Overloading
+
+Exercise: Create a class called Calculator which has 4 different methods add, diff, mul and div that accept two numbers as parameters. Overload the methods such that the parameters can be of the following pattern. 
+a)	Both are of int data type. 
+b)	Both are of double data type. 
+c)	First parameter is of int data type and second parameter is of double data type. 
+d)	First parameter is of double data type and second parameter is of int data type
+
+
+     Create an object to access these methods and invoke these methods with different type of numbers and display the result in the corresponding methods. 
+
+Additional assignments
+
+sing interface constants
+
+Exercise:
+?	A scientific application needs to use several constants through out the application. It was decided to create an interface called PhysicalConstants. The constants that needs to be set are 
+?	Speed of light in vacuum (C):299 792 458 m/s
+?	Gravitational constant (G): 6.674 28×10-11 m3 kg-1 s-2
+?	Standard Gravitational Acceleration(g) : 9.806 65 m/s2
+?	Use these constants for a class that has following functions. 
+?	E= MC2
+?	F=G (m1  m2)/r2
+?	d=0.5 gt
+Make sure that constants names are used without repeating interface names with constants.
+Recommended duration: 30 Mins
+
+Exercise Objective(s): Overriding Object class methods
+
+Exercise:
+?	In the worker exercise, instead of printing individual attributes like name, salary and so on, if the object is printed automatically the details must be printed. Also two workers are same if their names are same. Therefore before printing salary report, a check needs to made to see if duplicate workers have been entered. If so, the duplicates must be removed from the list. 
+
+

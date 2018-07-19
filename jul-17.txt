@@ -1,0 +1,278 @@
+create table AB_emp
+(
+	emp_no numeric(3) primary key,
+	empname varchar2(20) not null,
+	salary numeric(8,2),
+	designation varchar2(20),
+	dept_no numeric(3)
+);
+
+create table AB2_dept
+(
+	dept_no numeric(3) primary key,
+	dept_name varchar2(20) not null,
+	location varchar2(20) not null
+);
+
+alter table AB_EMP ADD CONSTRAINT myfk_1 foreign key(dept_no) references AB2_dept(dept_no)
+remember the format.
+
+=======
+ insert into AB_emp values(1,'Anu',98000,'Consultant',009);
+
+alter table AB_emp add constraint myfk_1 foreign key(dept_no) references AB2_dept(dept_no);
+
+this line shows an error has there are no values in the primary table.
+
+
+ insert into AB2_dept values(009,'HR','Udupi');
+
+insert into AB2_dept values(001,'CBJ','Buda');
+
+insert into AB2_dept values(002,'Marketing','pest');
+
+now adding
+
+insert into AB_emp values(1,'raj',95000,'Manager',003);
+
+this shows an error as there is no dept 003 in primary table
+
+
+
+example 2
+
+create table supplier
+(
+	supplier_id numeric(10) not null,
+	supplier_name varchar2(50) not null,
+	contact_name varchar2(50),
+	constraint supplier_pk primary key(supplier_id) {here we can declare multiple columns as primary keys ex: constraint supplier_pk primary key(supplier_id,supplier_name)}
+);
+
+create table products
+(
+	product_id numeric(10) not null,
+	supplier_id numeric(10) not null,
+	constraint fk_supplier foreign key(supplier_id) references supplier(supplier_id)
+);
+ 
+note : 
+1. adding a column
+alter table student_t add email varchar2(20);
+
+2. adding constraint to the table
+alter table student_t add constraint emailConstraint check(email in ('A','B','C')); varchar2(20);
+
+insert into student_t values('4','yash','chennai','100','D');
+
+shows a violation in accordance to the constraint.
+
+3. dropping a column
+alter table student_t drop column email;
+
+ex 3 integrity constraints
+
+create table section_t
+(
+	section_id number(3) constraint S_ID check (section_id > 0),
+	section_name char(30) constraint s_name not null,
+	book_count number(6),
+	constraint sect_prime primary key(section_id)
+);
+
+create table book_t
+(
+	isbn number(10) constraint B_ISBN check (ISBN between 1 and 2000),
+	title varchar2(200) constraint B_title not null,
+	author varchar2(50) constraint B_auth not null,
+	lent_date date,
+	returned_date date,
+	times_lent number(6),
+	section_id number(3),
+	constraint book_prime primary key(isbn),
+	constraint book_sect foreign key(section_id) references section_t(section_id) {notice no comma}
+	on delete cascade
+);
+
+insert into book_t values('1','Fargo','Dan','03-jun-2017','03-aug-2017','1','1000');
+
+INSERT INTO SECTION_T VALUES(1,'ABC',78);
+
+INSERT INTO SECTION_T VALUES(2,'DEF',85);
+
+EX 4 SUB QUERY (single row and multiple row)
+
+create table stu_d
+(
+	Roll number(20),
+	Name varchar(20)
+);
+
+create table fees_d
+(
+	roll number(20),
+	amount number(10)
+);
+
+insert into stu_d values(&roll,'&name');
+
+
+
+insert into fees_d values(&roll,&amount);
+
+
+SQL> select name from stu_d where roll = ( select roll from fees_d where amount = 50000);
+
+NAME
+--------------------
+Jon
+
+SQL> select name from stu_d where roll in ( select roll from fees_d where amount = 9000);
+
+NAME
+--------------------
+Rob
+Mark
+
+Multiple column sub query and co related subquery
+
+create table emp100
+(
+	deptno number,
+	sal number
+);
+
+insert into emp100 values(&deptno,&salary);
+
+delete from emp100 a where a.sal=(select max(sal) from emp100 where a.deptno = b.deptno);
+ dont know how it works
+
+SQL> select * from emp100;
+
+    DEPTNO     SALARY
+---------- ----------
+         1       5000
+         1       6000
+         2       5000
+it removed the largest wage earners from each department.
+
+ learn about any and all.
+
+
+
+==========================================
+ ex 5 Joins
+
+create table suppliers
+(
+	supplier_id numeric(10),
+	supplier_name varchar(10)
+);
+
+create table orders
+(
+	order_id numeric(10),
+	supplier_id numeric(10),
+	orderdate date
+);
+
+insert into suppliers values(1,'HCL');
+
+SUPPLIER_ID SUPPLIER_N
+----------- ----------
+          1 HCL
+          2 IBM
+          3 HP
+          4 Dell
+          5 Apple
+ insert into orders values(1000,1,'08-jun-2015');
+
+  ORDER_ID SUPPLIER_ID ORDERDATE
+---------- ----------- ---------
+      1000           1 08-JUN-15
+      2000           5 05-JUN-17
+      3000           4 28-JUN-11
+
+performing joins
+
+SQL> select suppliers.supplier_id, suppliers.supplier_name,orders.orderdate from suppliers, orders where suppliers.supplier_id = orders.supplier_id;
+
+SUPPLIER_ID SUPPLIER_N ORDERDATE
+----------- ---------- ---------
+          1 HCL        08-JUN-15
+          4 Dell       28-JUN-11
+          5 Apple      05-JUN-17
+
+select order_id, supplier_name
+from orders left outer join suppliers 
+on orders.supplier_id = suppliers.supplier_id;
+
+=======================================================
+
+java
+
+path variable
+
+java program01
+
+public class hello {
+
+	public void display() {
+		System.out.println("Display called");
+		How hee = new How();
+		hee.hi();
+	}
+	
+	public void accept() {
+		System.out.println("Accept called");
+		hello H = new hello();
+		H.display();
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Hello and welcome to IDE");
+		hello h = new hello();
+		h.display();
+		h.accept();
+		System.out.println("Main Ended");
+	}
+
+}
+class How{
+	
+	public void hi() {
+		System.out.println("Hi is in how");
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("i is in main of how");
+		How hw = new How();
+		hw.hi();
+	}
+}
+
+Since there are two classes, there can be two outputs.
+
+If we select hello(syntaxically, it should be Hello, but its fine)
+
+output 1
+
+Hello and welcome to IDE
+Display called
+Hi is in how
+Accept called
+Display called
+Hi is in how
+Main Ended
+ 
+output 2
+i is in main of how
+Hi is in how
+
+
+
+
+
+
+
