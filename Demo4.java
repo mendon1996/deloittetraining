@@ -1,16 +1,22 @@
-package collectiondemos;
+package thread_demos;
 
-public class Demo4<Z> {
+//creating thread using anonymous class
+public class Demo4 {
 	
-	public void display(Z name) {
-		System.out.println(name);
-	}
 	public static void main(String[] args) {
-		Demo4<Integer> d = new Demo4<Integer>();
-		d.display(122);
-		Demo4<String> d1 = new Demo4<String>();
-		d1.display("Rishabh");
+		System.out.println("Main called by " +Thread.currentThread().getName());
+		Thread t1 = new Thread();
+		t1.start();
+		//creating an anonymous class
+		{
+			public run(){
+				System.out.println("Run called :" +Thread.currentThread().getName());//Here thread is a static class and currentthread is a static method. Thats why we don't need to create an object to call that function.
+			}
+		};
 		
-	}
+	} 
+		
+	
+	
 
 }

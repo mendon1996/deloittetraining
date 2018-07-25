@@ -1,27 +1,42 @@
-package collectiondemos;
+package thread_demos;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class Demo3 {
+class Print{
+	//Adding synchronized keyword ensures thread safety
+	public synchronized static void printSomething(String firstName, String lastName) {
+		System.out.println("Welcome, " +firstName);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Bye. " +lastName);
+	}
+}
+public class Demo3 extends Thread{
+	
+	private String firstName;
+	private String lastName;
+	public Demo3(int i) {
+		//this will create a thread with name 1
+		super(i+"");
+		start();
+	}
+	public Demo3(int i,  String firstName, String lastName) {
+		super(i+"");
+		this.firstName = firstName;
+		this.lastName = lastName;
+		start();
+	}
+	public void run(){
+		Print.printSomething( firstName,lastName);
+	}
 	
 	public static void main(String[] args) {
-		int marks[] = {12,89,23};
-		
-		String str[] = {"Raju","Rohan","Uday","Tarun"};
-	
-		List<String> list = Arrays.asList(str); //This line converts array to list. 
-		//The problem is that we can't change the array properly 
-		
-		List<String> pp = new ArrayList(); // A copy of the list converted from the array is stored in pp.
-		//We make changes to this object, pp.
-		
-		pp.addAll(list);
-		
-		pp.add(3,"Ram");
-		System.out.println(pp);
-		
+		System.out.println("Enters main");
+		new Demo3(1,"Rahul","Mehta");
+		new Demo3(2,"Raj","Shah");
+		new Demo3(1,"Jay","Mehta");
+		System.out.println("Leaves main");
 	}
-
 }
