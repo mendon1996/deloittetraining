@@ -1,41 +1,21 @@
-package io_demos;
+package collectiondemos;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Demo1 {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		
-		/*File file = new File("C:\\Batch\\b.txt");
-		file.createNewFile();*/
+		Set s = new TreeSet();
+		s.add("Neha");
+		s.add("Arun");
+		s.add("Rishabh");
+		s.add("Suhas");
+		s.add("Rishabh");
+		System.out.println(s);
+				
 		
-		String s;
-		
-		File fileA = new File("C:\\Batch\\a.txt");
-				
-		if(fileA.exists()) {
-			
-			FileReader reader = new FileReader(fileA);
-			
-			long i;
-			long j = fileA.length();
-			char[] c[1000];
-			
-			while((i=reader.read())!=-1) {
-				
-				for(i=0;i<j;i++) {
-					
-					
-				}
-				
-				
-			}
-		}
-		
-		}
+	}
+
 }
-
-	
-
