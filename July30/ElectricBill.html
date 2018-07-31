@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type = "text/javascript">
+function validateCustomerInfo()
+{
+	 var BillNo = document.getElementById("BillNumber").value;
+	 var CardNo = document.getElementById("CreditCardNumber").value;
+	 var InputAmt = document.getElementById("InitialAmount").value;
+	 if(BillNo.length==0)
+	  {
+  		alert("Please enter Bill Number");
+	  }
+	 if(CardNo.length==0)
+ 	{
+		 alert("Please enter Credit Card Number");
+	 }
+ 	if(InputAmt.length==0)
+	 {
+		 alert("Please enter Initial Bill Amount");
+	 }
+ 
+ 	var d = new Date();
+ 	
+ 	var x = d.getDate()
+ 
+ 	if(x>15)
+ 	 {
+ 		 var due = parseInt(InputAmt, 10) + parseInt((x-15)*50, 10);
+  		alert(" You have a fine pending. \n Your total bill amount is: "+due);
+ 	 }
+ 	else
+ 	 {
+ 		 alert("You have no pending fines. Your bill amount is: "+iA)
+ 	 }
+}
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td> Enter Bill Number :</td><td><input type= "text" id ="BillNumber"></td>
+<td>Enter Credit Card Number :</td><td><input type = "text" id ="CreditCardNumber"></td>
+<td> Enter Bill Amount :</td><td><input type= "text" id ="InitialAmount"></td></tr>
+<tr><td><input type = "button" value = "Generate Bill Amount" onclick = "validateCustomerInfo()">
+</td>
+</table>
+</body>
+</html>
