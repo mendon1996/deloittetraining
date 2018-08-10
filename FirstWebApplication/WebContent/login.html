@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function validateCustomerInfo(){
+	
+	var cN = document.getElementById("cName").value; <!--We add cName into cN -->
+	var cId = document.getElementById("cId").value;<!-- We add cId ontp cId-->
+	var cAdd = document.getElementById("cAddress").value;
+	var bill = document.getElementById("Bill").value;
+	
+	if(cN.length == 0){
+		alert("Please enter your name");
+		return false;
+	}
+	else if(cId.length == 0){
+		alert("Please enter your customer Id");
+		return false;
+	}
+	else if(cAdd.length==0){
+		alert("Please enter your customer address");
+		return false;
+	}
+	else if(Bill.length==0){
+		alert("Please enter your bill amount");
+		return false;
+	}
+	else{
+		alert("Welcome : " + cN);
+	}
+
+}
+</script>
+</head>
+<body>
+<table>
+	<form name = "login"  action = "save"  onsubmit ="return validateCustomerInfo()">
+	<tr><td> Customer Id :(required)</td><td><input type = "text" id = "cId" name = "customerId"></td></tr></br>
+	<tr><td>Customer name : </td><td><input type = "text" id = "cName" name = "customerName"></td></tr></br>
+	<tr><td>Customer Address : </td><td><input type = "text" id = "cAddress" name = "customerAddress"></td></tr></br>
+	<tr><td>Bill Amount : </td><td><input type = "text" id = "Bill" name = "billAmount"></td></tr></br>
+	<tr><td><input type = "submit" value = "Go!" ></td></tr></br>
+	</form>
+</table>
+</body>
+
+</br>
+
+</html>
