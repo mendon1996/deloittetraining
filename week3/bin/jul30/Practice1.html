@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head> <!-- This message is used to display error message in the file rather than a pop up -->
+<script type="text/javascript">
+function validateCustomerInfo(){
+	
+	var cN = document.getElementById("cName").value; <!--We add cName into cN -->
+	var cId = document.getElementById("cId").value;<!-- We add cId ontp cId-->
+	var message1 = document.getElementById("message1");
+	
+	if(cN.length == 0){
+		<!--alert("Please enter your name")-->
+		message1.innerHTML = "<h1><font color = 'red'> Please enter your name";
+	}
+	else if(cId.length == 0){
+		<!--alert("Please enter your customer Id");-->
+		message1.innerHTML = "<h1><font color = 'red'> Please enter your c ID";
+	}
+	
+	else{
+		<!--alert("Welcome : " + cN);-->
+		message1.innerHTML = "<h1><font color = 'green'> Welcome :"+cN;
+	}
+	
+
+}
+</script>
+</head>
+<body>
+<table>
+	<tr><td> Customer Id :(required)</td><td><input type = "text" id = "cId" name = "customerId"></td></tr></br>
+	<tr><td>Customer name : </td><td><input type = "text" id = "cName" name = "Customername"></td></tr></br>
+	<tr><td><input type = "button" value = "Go!" onclick="validateCustomerInfo()"></td></tr></br>
+	
+</table>
+</body>
+
+</br>
+<div id = "message1"></div>
+
+</html>
