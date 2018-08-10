@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function validateCustomerInfo()
+{
+	var cN = document.getElementById("cName").value;
+	//var cId = document.getElementById("cid").value;
+	var cId = document.forms[0].elements[0].value;
+	var message1 = document.getElementById("message1");
+	if(cN.length == 0) {
+		message1.innerHTML ="<h1><font color='red'>Please enter your name";
+		return false;
+	}
+	else if (cId.length == 0) {
+		message1.innerHTML ="<h1><font color='red'>Please enter your c id";
+		return false;
+	}
+	else {
+		message1.innerHTML ="<h1><font color='green'>Welcome :"+cN;
+	}
+}
+</script>
+</head>
+<body>
+<form name="loginform" action="NewCustomer.jsp" onsubmit="return validateCustomerInfo()">
+<table>
+<tr><td>Customer Id :( required) </td><td>
+<input type="text" id="cid" name="customerId"></td></tr><tr>
+<td>Customer Name : (required)</td><td><input type="text" id="cName" 
+name="customerName" ></td></tr>
+<tr><td>Customer Address :( required) </td><td>
+<input type="text" id="cid" name="customerAddress"></td></tr><tr>
+<td>Bill Amount : (required)</td><td><input type="text" id="cName" 
+name="billAmount" ></td></tr>
+<tr><td><input type="submit" value="SaveCustomerInfo" ></td><td></td></tr>
+</table>
+</form>
+</body>
+<br/>
+<div id="message1"></div>
+</html>
